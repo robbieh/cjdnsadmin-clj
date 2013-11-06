@@ -1,4 +1,4 @@
-(ns cjdns-clj.util
+(ns cjdnsadmin-clj.util
   (:import 
  ;    [java.security MessageDigest]
  ;    [java.math.BigInteger]
@@ -17,23 +17,29 @@
   )
 
 
-(comment------------
+(comment ------------
 
+(comment "78955b7e093228c692b4f9c2c93e0e6b5809ce395e79d5815b4bcc8d6ea585ef798da71f8538fb3aa2be1a5abeb66885bd4ae4e66e615cde82342dceb0e307c7")
+(comment "fc32c50f9ed58fd87efdcbfe384a9e8d4a9c62b6e2f40d6873e50df459ca26ccefda60c70acbaf7b4a6ebd5b5d46b1269417be0ab66c833fd0eddf6c7f4e55e1")
 
-(let [b32 (new Base32)
-      pubkey (.toUpperCase "hy7fhbsbkcvddd8sn7b2pvvmg01b6y5w97mks6x94llkvnzlhk40")]
-  (b32/decode pubkey)
-------------)  
+(let [b32 (new Base32 true )
+      pubkey (.toUpperCase "hy7fhbsbkcvddd8sn7b2pvvmg01b6y5w97mks6x94llkvnzlhk40")
+      decoded (.decode b32 pubkey)
+      decoded2 (base32-decode pubkey)
+      ]
+;  (println (take 5 (.decode b32 pubkey)))
+;  (DigestUtils/sha512Hex (DigestUtils/sha512 decoded))
+;  (DigestUtils/sha512Hex (DigestUtils/sha512 decoded2))
+;  (let [s5 (DigestUtils/getSha512Digest) ] (println s5)) 
+;(DigestUtils/sha512Hex (DigestUtils/sha512Hex (str (map #(Integer/toHexString (bit-and % 0xff)) decoded2))))
+(DigestUtils/sha512Hex (byte-array (map byte (map #(-  % 128) decoded2))))
+
+  )
 
  
-(let [s5 (DigestUtils/getSha512Digest)
-      
-      ]
-  (println s5)
-  ) 
   
 
-)
+------------   )
 
 ; Adapted directly from cjdns source
 
@@ -88,11 +94,11 @@
     
    ;(println (String. (byte-array (map byte (take @outputIndex (amap ^ints outarr idx ret (- (int 128) (aget ^ints outarr idx))))))))
     ;(String.  (byte-array (take @outputIndex outarr)))
-;    (int-array  (take @outputIndex outarr)) 
+    (int-array  (take @outputIndex outarr)) 
 ;     (int-array (take @outputIndex (amap ^ints outarr idx ret (bit-and 0xff  (aget ^ints outarr idx)))))
 ;    (byte-array  (map byte (take @outputIndex outarr)))
 ;    (byte-array (map byte (take @outputIndex (amap ^ints outarr idx ret (- (int 127) (aget ^ints outarr idx))))))
-    (int-array (map int (take @outputIndex (amap ^ints outarr idx ret (- (int 128) (aget ^ints outarr idx))))))
+;    (int-array (map int (take @outputIndex (amap ^ints outarr idx ret (- (int 128) (aget ^ints outarr idx))))))
 ;    (byte-array (map byte (take @outputIndex (amap ^bytes outarr idx ret (bit-and 0xff  (aget ^bytes outarr idx))))))
     )
   )
