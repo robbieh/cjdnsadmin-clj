@@ -82,4 +82,3 @@
         ]
     ip6) )
 
-(public-to-ip6 "hy7fhbsbkcvddd8sn7b2pvvmg01b6y5w97mks6x94llkvnzlhk40.k")
