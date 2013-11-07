@@ -1,4 +1,4 @@
-(ns cjdns-clj.core
+(ns cjdnsadmin-clj.core
   (:import  (java.net InetAddress DatagramPacket DatagramSocket ) )
   (:require 
      [clojure.data.json :as json]
