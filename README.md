@@ -6,7 +6,7 @@ A Clojure library for talking to a CJDNS server. Alpha. YMMV.
 
 Add to your project.clj :dependencies list:
 
-    [cjdnsadmin-clj "0.1.0-SNAPSHOT"]
+    [cjdnsadmin-clj "0.1.0"]
     
 Then in your .clj file:
 
